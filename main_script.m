@@ -1,0 +1,36 @@
+%--------------------------------------------------------------------------
+%PQCSAF - Precise and Quantitative Chlorosis Severity Assessment Framework
+%Developed by Sourav Samanta, Sanjoy Pratihar,and Sanjay Chatterji
+
+%==========================================================================
+% This script performs chlorosis severity assessment using evolutionary
+% superpixel segmentation,classification, and severity estimation.
+%==========================================================================
+% The multics_feature_selection() function is designed for feature selection 
+% using a multi-swarm cuckoo search optimization approach.
+%==========================================================================
+% Step 1: Read and resize the input leaf image
+im = imread('sample_1.png');
+im = imresize(im, 0.5);
+
+% Step 2: Apply Cuckoo Search-optimized SLIC to segment the image
+% Outputs:
+[l, Sp, bestnest] = cs_slic(im);
+
+% Step 3: Extract individual leaf superpixels from the segmented image
+[spx_leaf] = leaf_superpixel(l, Sp, im);
+
+% Step 4: Extract GLCM texture features from each superpixel
+[spx_featureset] = feature_extraction(spx_leaf);
+
+% Step 5: Classify each superpixel (e.g., healthy, chlorotic)
+[class_response] = classification_superpixel(spx_featureset);
+
+% Step 6: Estimate overall severity score based on classification output
+[severity_score] = severity_estimation(class_response);
+
+% Step 7: Display and overlay the severity score of the leaf image
+display_score(severity_score);
+
+
+
