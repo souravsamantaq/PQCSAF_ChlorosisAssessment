@@ -35,5 +35,5 @@ This repository contains MATLAB code for implementing the core modules of the **
 
 ## Disclaimer
 
-This code is intended for academic and research use. The feature selection part of the PQCSAF framework is not included in this repository. For inquiries regarding the complete pipeline or collaborations, please contact the author.
+This code is intended for academic and research use. For inquiries regarding the complete pipeline or potential collaborations, please contact the authors.
 
